@@ -12,12 +12,14 @@ const SESSION_SECRET = process.env.SESSION_SECRET;
 const REDIRECT_URI = "https://westcolclipsai.onrender.com/callback";
 
 app.use(express.urlencoded({ extended: false }));
+
 app.use(
   express.raw({
     type: ["video/mp4", "video/quicktime", "video/webm"],
     limit: "100mb"
   })
 );
+
 app.use(express.json());
 
 app.use(
@@ -34,12 +36,16 @@ app.use(
   })
 );
 
+// Página principal
 app.get("/", (req, res) => {
   res.send(`
     <!doctype html>
     <html lang="es">
-    <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>WestcolClipsAI</title></head>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>WestcolClipsAI</title>
+    </head>
     <body style="font-family:Arial;max-width:650px;margin:40px auto;padding:20px">
       <h1>WestcolClipsAI</h1>
       <p>Conecta tu cuenta de TikTok y prepara tus clips.</p>
@@ -50,17 +56,23 @@ app.get("/", (req, res) => {
   `);
 });
 
+// Estado del servidor
 app.get("/health", (req, res) => {
   res.json({
     estado: "ok",
     app: "WestcolClipsAI",
-    oauthConfigured: Boolean(CLIENT_KEY && CLIENT_SECRET && SESSION_SECRET)
+    oauthConfigured: Boolean(
+      CLIENT_KEY && CLIENT_SECRET && SESSION_SECRET
+    )
   });
 });
 
+// Conectar con TikTok
 app.get("/auth/tiktok", (req, res) => {
   if (!CLIENT_KEY || !CLIENT_SECRET || !SESSION_SECRET) {
-    return res.status(500).send("Falta configurar el servidor en Render.");
+    return res.status(500).send(
+      "Falta configurar el servidor en Render."
+    );
   }
 
   const state = crypto.randomBytes(24).toString("hex");
@@ -75,10 +87,12 @@ app.get("/auth/tiktok", (req, res) => {
   });
 
   res.redirect(
-    "https://www.tiktok.com/v2/auth/authorize/?" + params.toString()
+    "https://www.tiktok.com/v2/auth/authorize/?" +
+    params.toString()
   );
 });
 
+// Retorno de autorización
 app.get("/callback", async (req, res) => {
   const { code, state, error, error_description } = req.query;
 
@@ -118,7 +132,11 @@ app.get("/callback", async (req, res) => {
     const data = await response.json();
 
     if (!response.ok || data.error || !data.access_token) {
-      console.error("Error de token:", data.error || response.status);
+      console.error(
+        "Error de token:",
+        data.error || response.status
+      );
+
       return res.status(400).send(
         "TikTok no permitió completar la autorización. Revisa los registros de Render."
       );
@@ -130,10 +148,13 @@ app.get("/callback", async (req, res) => {
     res.redirect("/tiktok/profile");
   } catch (err) {
     console.error("Error OAuth:", err.message);
-    res.status(500).send("No fue posible conectar con TikTok.");
+    res.status(500).send(
+      "No fue posible conectar con TikTok."
+    );
   }
 });
 
+// Consultar perfil conectado
 app.get("/tiktok/profile", async (req, res) => {
   const token = req.session.tiktokAccessToken;
 
@@ -146,7 +167,11 @@ app.get("/tiktok/profile", async (req, res) => {
   try {
     const response = await fetch(
       "https://open.tiktokapis.com/v2/user/info/?fields=open_id,display_name,avatar_url",
-      { headers: { Authorization: `Bearer ${token}` } }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     );
 
     const data = await response.json();
@@ -165,10 +190,13 @@ app.get("/tiktok/profile", async (req, res) => {
     });
   } catch (err) {
     console.error("Error de perfil:", err.message);
-    res.status(500).send("No fue posible consultar el perfil.");
+    res.status(500).send(
+      "No fue posible consultar el perfil."
+    );
   }
 });
 
+// Formulario para enviar videos
 app.get("/tiktok/upload", (req, res) => {
   if (!req.session.tiktokAccessToken) {
     return res.redirect("/auth/tiktok");
@@ -177,49 +205,78 @@ app.get("/tiktok/upload", (req, res) => {
   res.send(`
     <!doctype html>
     <html lang="es">
-    <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Enviar clip a TikTok</title></head>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Enviar clip a TikTok</title>
+    </head>
     <body style="font-family:Arial;max-width:650px;margin:40px auto;padding:20px">
       <h1>Enviar clip a TikTok</h1>
       <p>Selecciona un video MP4, MOV o WebM de máximo 100 MB.</p>
+
       <form id="form">
-        <input id="video" type="file" accept="video/mp4,video/quicktime,video/webm" required>
-        <p><button type="submit">Enviar como borrador</button></p>
+        <input
+          id="video"
+          type="file"
+          accept="video/mp4,video/quicktime,video/webm"
+          required
+        >
+        <p>
+          <button type="submit">Enviar como borrador</button>
+        </p>
       </form>
+
       <p id="resultado"></p>
+
       <script>
         const form = document.getElementById("form");
         const resultado = document.getElementById("resultado");
 
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
+
           const file = document.getElementById("video").files[0];
 
           if (!file) return;
+
           if (file.size > 100 * 1024 * 1024) {
             resultado.textContent = "El video supera los 100 MB.";
             return;
           }
 
-          const tipos = ["video/mp4", "video/quicktime", "video/webm"];
+          const tipos = [
+            "video/mp4",
+            "video/quicktime",
+            "video/webm"
+          ];
+
           if (!tipos.includes(file.type)) {
-            resultado.textContent = "Formato no compatible. Usa MP4, MOV o WebM.";
+            resultado.textContent =
+              "Formato no compatible. Usa MP4, MOV o WebM.";
             return;
           }
 
-          resultado.textContent = "Enviando video a TikTok. Espera...";
+          resultado.textContent =
+            "Enviando video a TikTok. Espera...";
+
           try {
             const response = await fetch("/tiktok/video/upload", {
               method: "POST",
-              headers: { "Content-Type": file.type },
+              headers: {
+                "Content-Type": file.type
+              },
               body: file
             });
+
             const data = await response.json();
+
             resultado.textContent = response.ok
               ? data.mensaje + " ID: " + data.publish_id
-              : "Error: " + (data.error || "No se pudo enviar el video.");
+              : "Error: " +
+                (data.error || "No se pudo enviar el video.");
           } catch (err) {
-            resultado.textContent = "No se pudo completar la solicitud.";
+            resultado.textContent =
+              "No se pudo completar la solicitud.";
           }
         });
       </script>
@@ -228,8 +285,11 @@ app.get("/tiktok/upload", (req, res) => {
   `);
 });
 
+// Enviar video a la bandeja de entrada de TikTok
 app.post("/tiktok/video/upload", async (req, res) => {
   const token = req.session.tiktokAccessToken;
+  const video = req.body;
+  const contentType = req.headers["content-type"];
 
   if (!token) {
     return res.status(401).json({
@@ -237,16 +297,19 @@ app.post("/tiktok/video/upload", async (req, res) => {
     });
   }
 
-  const video = req.body;
-  const contentType = req.headers["content-type"];
-
   if (!Buffer.isBuffer(video) || video.length === 0) {
     return res.status(400).json({
       error: "No se recibió el archivo de video."
     });
   }
 
-  if (!["video/mp4", "video/quicktime", "video/webm"].includes(contentType)) {
+  const tipos = [
+    "video/mp4",
+    "video/quicktime",
+    "video/webm"
+  ];
+
+  if (!tipos.includes(contentType)) {
     return res.status(400).json({
       error: "Formato no compatible."
     });
@@ -256,18 +319,19 @@ app.post("/tiktok/video/upload", async (req, res) => {
   const maxSize = 100 * 1024 * 1024;
 
   if (size > maxSize) {
-    return res.status(413).json({ error: "El video supera los 100 MB." });
+    return res.status(413).json({
+      error: "El video supera los 100 MB."
+    });
   }
 
   try {
-    // Inicializa el envío a la bandeja de TikTok como borrador.
     const chunkSize = size <= 64 * 1024 * 1024
       ? size
       : 10 * 1024 * 1024;
 
     const totalChunks = size <= 64 * 1024 * 1024
       ? 1
-      : Math.floor(size / chunkSize);
+      : Math.ceil(size / chunkSize);
 
     const initResponse = await fetch(
       "https://open.tiktokapis.com/v2/post/publish/inbox/video/init/",
@@ -293,25 +357,26 @@ app.post("/tiktok/video/upload", async (req, res) => {
     if (
       !initResponse.ok ||
       initData.error?.code !== "ok" ||
-      !initData.data?.upload_url
+      !initData.data?.upload_url ||
+      !initData.data?.publish_id
     ) {
-      console.error("Error al iniciar carga:", initData.error);
+      console.error(
+        "Error al iniciar carga:",
+        initData.error
+      );
+
       return res.status(400).json({
         error: "TikTok no aceptó iniciar la carga.",
-        detalle: initData.error?.code || "Error de inicialización"
+        detalle: initData.error?.code ||
+          "Error de inicialización"
       });
     }
 
     const uploadUrl = initData.data.upload_url;
-
-    // Envía los bloques secuencialmente a la URL entregada por TikTok.
     let offset = 0;
 
     for (let i = 0; i < totalChunks; i++) {
-      const end = i === totalChunks - 1
-        ? size
-        : Math.min(offset + chunkSize, size);
-
+      const end = Math.min(offset + chunkSize, size);
       const part = video.subarray(offset, end);
 
       const uploadResponse = await fetch(uploadUrl, {
@@ -325,7 +390,11 @@ app.post("/tiktok/video/upload", async (req, res) => {
       });
 
       if (!uploadResponse.ok) {
-        console.error("Falló un bloque de carga:", uploadResponse.status);
+        console.error(
+          "Falló un bloque de carga:",
+          uploadResponse.status
+        );
+
         return res.status(502).json({
           error: "TikTok rechazó la transferencia del video.",
           estado: uploadResponse.status
@@ -337,13 +406,65 @@ app.post("/tiktok/video/upload", async (req, res) => {
 
     res.json({
       enviado: true,
-      mensaje: "Video enviado a TikTok como borrador. Revisa la bandeja de entrada de TikTok para editarlo y terminar de publicarlo.",
+      mensaje: "TikTok recibió la transferencia. Revisa la bandeja de entrada para editar el video.",
       publish_id: initData.data.publish_id
     });
   } catch (err) {
     console.error("Error de carga:", err.message);
+
     res.status(500).json({
       error: "No fue posible completar la carga del video."
+    });
+  }
+});
+
+// Consultar estado de un envío existente, sin volver a subir el video
+app.get("/tiktok/status", async (req, res) => {
+  const token = req.session.tiktokAccessToken;
+  const publishId = req.query.publish_id;
+
+  if (!token) {
+    return res.status(401).json({
+      error: "Sesión vencida. Conecta TikTok otra vez."
+    });
+  }
+
+  if (
+    typeof publishId !== "string" ||
+    !/^v_inbox_file~v2\.[A-Za-z0-9_-]+$/.test(publishId)
+  ) {
+    return res.status(400).json({
+      error: "ID de envío no válido."
+    });
+  }
+
+  try {
+    const response = await fetch(
+      "https://open.tiktokapis.com/v2/post/publish/status/fetch/",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({
+          publish_id: publishId
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    return res.status(response.status).json({
+      estado_http: response.status,
+      resultado: data.data || null,
+      error: data.error || null
+    });
+  } catch (err) {
+    console.error("Error consultando estado:", err.message);
+
+    return res.status(500).json({
+      error: "No fue posible consultar el estado."
     });
   }
 });

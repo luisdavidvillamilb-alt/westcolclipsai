@@ -1,6 +1,7 @@
 
 const express = require("express");
 const session = require("express-session");
+const crypto = require("crypto");
 
 const app = express();
 app.set("trust proxy", 1);
@@ -16,7 +17,7 @@ app.use(
       secure: true,
       httpOnly: true,
       sameSite: "lax",
-      maxAge: 10 * 60 * 1000
+      maxAge: 30 * 60 * 1000
     }
   })
 );
@@ -44,14 +45,13 @@ app.get("/auth/tiktok", (req, res) => {
     return res.status(500).send("Falta configurar el servidor.");
   }
 
-  const crypto = require("crypto");
   const state = crypto.randomBytes(24).toString("hex");
   req.session.oauthState = state;
 
   const params = new URLSearchParams({
     client_key: CLIENT_KEY,
     response_type: "code",
-    scope: "user.info.basic,video.upload",
+    scope: "user.info.basic",
     redirect_uri: REDIRECT_URI,
     state
   });
@@ -80,7 +80,7 @@ app.get("/callback", async (req, res) => {
   delete req.session.oauthState;
 
   try {
-    const response = await fetch(
+    const tokenResponse = await fetch(
       "https://open.tiktokapis.com/v2/oauth/token/",
       {
         method: "POST",
@@ -97,30 +97,73 @@ app.get("/callback", async (req, res) => {
       }
     );
 
-    const data = await response.json();
+    const tokenData = await tokenResponse.json();
 
-    if (!response.ok || data.error || !data.access_token) {
-      console.error("Error de token TikTok:", {
-        status: response.status,
-        error: data.error,
-        description: data.error_description
+    if (!tokenResponse.ok || tokenData.error || !tokenData.access_token) {
+      console.error("Falló el intercambio de tokens:", {
+        status: tokenResponse.status,
+        error: tokenData.error,
+        description: tokenData.error_description
       });
 
       return res.status(400).send(
-        "TikTok recibió la autorización, pero no fue posible completar el intercambio de tokens. Revisa el entorno y las credenciales en Render."
+        "TikTok no permitió completar la autorización. Revisa los registros del servidor."
       );
     }
 
-    // No mostrar ni guardar los tokens en la respuesta del navegador.
-    req.session.tiktokConnected = true;
+    // El token se mantiene solo en la sesión actual del usuario.
+    req.session.tiktokAccessToken = tokenData.access_token;
 
-    return res.status(200).send(
-      "Autorización OAuth completada correctamente. WestcolClipsAI recibió los tokens de TikTok."
-    );
+    return res.redirect("/tiktok/profile");
   } catch (err) {
     console.error("Error de conexión con TikTok:", err.message);
     return res.status(500).send(
-      "No se pudo conectar con TikTok para completar la autorización."
+      "No fue posible completar la conexión con TikTok."
+    );
+  }
+});
+
+app.get("/tiktok/profile", async (req, res) => {
+  const accessToken = req.session.tiktokAccessToken;
+
+  if (!accessToken) {
+    return res.status(401).send(
+      'Primero conecta TikTok desde <a href="/auth/tiktok">este enlace</a>.'
+    );
+  }
+
+  try {
+    const profileResponse = await fetch(
+      "https://open.tiktokapis.com/v2/user/info/?fields=open_id,display_name,avatar_url",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    );
+
+    const profileData = await profileResponse.json();
+
+    if (!profileResponse.ok || profileData.error?.code !== "ok") {
+      console.error("Falló la consulta del perfil:", {
+        status: profileResponse.status,
+        error: profileData.error?.code
+      });
+
+      return res.status(400).send(
+        "TikTok autorizó la conexión, pero no fue posible consultar el perfil. Comprueba los permisos de Sandbox."
+      );
+    }
+
+    return res.json({
+      conectado: true,
+      mensaje: "Perfil consultado correctamente.",
+      usuario: profileData.data.user
+    });
+  } catch (err) {
+    console.error("Error al consultar el perfil:", err.message);
+    return res.status(500).send(
+      "No fue posible consultar el perfil de TikTok."
     );
   }
 });

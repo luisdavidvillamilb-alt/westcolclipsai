@@ -1,7 +1,6 @@
 
 const express = require("express");
 const session = require("express-session");
-const crypto = require("crypto");
 
 const app = express();
 app.set("trust proxy", 1);
@@ -23,6 +22,7 @@ app.use(
 );
 
 const CLIENT_KEY = process.env.TIKTOK_CLIENT_KEY;
+const CLIENT_SECRET = process.env.TIKTOK_CLIENT_SECRET;
 const REDIRECT_URI = "https://westcolclipsai.onrender.com/callback";
 
 app.get("/", (req, res) => {
@@ -31,24 +31,27 @@ app.get("/", (req, res) => {
 
 app.get("/health", (req, res) => {
   res.json({
-    status: "ok",
+    estado: "ok",
     app: "WestcolClipsAI",
-    oauthConfigured: Boolean(CLIENT_KEY && process.env.SESSION_SECRET)
+    oauthConfigured: Boolean(
+      CLIENT_KEY && CLIENT_SECRET && process.env.SESSION_SECRET
+    )
   });
 });
 
 app.get("/auth/tiktok", (req, res) => {
-  if (!CLIENT_KEY || !process.env.SESSION_SECRET) {
+  if (!CLIENT_KEY || !CLIENT_SECRET || !process.env.SESSION_SECRET) {
     return res.status(500).send("Falta configurar el servidor.");
   }
 
+  const crypto = require("crypto");
   const state = crypto.randomBytes(24).toString("hex");
   req.session.oauthState = state;
 
   const params = new URLSearchParams({
     client_key: CLIENT_KEY,
     response_type: "code",
-    scope: "user.info.basic",
+    scope: "user.info.basic,video.upload",
     redirect_uri: REDIRECT_URI,
     state
   });
@@ -58,7 +61,7 @@ app.get("/auth/tiktok", (req, res) => {
   );
 });
 
-app.get("/callback", (req, res) => {
+app.get("/callback", async (req, res) => {
   const { code, state, error, error_description } = req.query;
 
   if (error) {
@@ -76,9 +79,50 @@ app.get("/callback", (req, res) => {
 
   delete req.session.oauthState;
 
-  res.status(200).send(
-    "TikTok devolvió un código de autorización. Falta intercambiarlo por tokens para completar la integración."
-  );
+  try {
+    const response = await fetch(
+      "https://open.tiktokapis.com/v2/oauth/token/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+          client_key: CLIENT_KEY,
+          client_secret: CLIENT_SECRET,
+          code: String(code),
+          grant_type: "authorization_code",
+          redirect_uri: REDIRECT_URI
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || data.error || !data.access_token) {
+      console.error("Error de token TikTok:", {
+        status: response.status,
+        error: data.error,
+        description: data.error_description
+      });
+
+      return res.status(400).send(
+        "TikTok recibió la autorización, pero no fue posible completar el intercambio de tokens. Revisa el entorno y las credenciales en Render."
+      );
+    }
+
+    // No mostrar ni guardar los tokens en la respuesta del navegador.
+    req.session.tiktokConnected = true;
+
+    return res.status(200).send(
+      "Autorización OAuth completada correctamente. WestcolClipsAI recibió los tokens de TikTok."
+    );
+  } catch (err) {
+    console.error("Error de conexión con TikTok:", err.message);
+    return res.status(500).send(
+      "No se pudo conectar con TikTok para completar la autorización."
+    );
+  }
 });
 
 const port = process.env.PORT || 8080;

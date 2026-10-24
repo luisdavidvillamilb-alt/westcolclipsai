@@ -4,13 +4,224 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WestcolClipsAI</title>
-  <meta name="description" content="Proyecto WestcolClipsAI para automatizar clips.">
+  <meta name="description" content="WestcolClipsAI es una herramienta para preparar clips de video verticales y facilitar su publicación mediante las funciones autorizadas de TikTok.">
+  <meta name="theme-color" content="#10101a">
+  <title>WestcolClipsAI | Herramientas para creadores</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --fondo: #10101a;
+      --panel: #191927;
+      --texto: #f6f6fb;
+      --suave: #b9b9ca;
+      --acento: #8b7cff;
+      --borde: #333349;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: #b9adff; }
+    a:hover { color: #ffffff; }
+
+    header, main, footer {
+      width: min(100% - 36px, 900px);
+      margin-inline: auto;
+    }
+
+    header {
+      padding: 25px 0;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .marca {
+      color: var(--texto);
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: .3px;
+    }
+
+    .hero { padding: 65px 0 40px; }
+
+    .etiqueta {
+      color: #c6bcff;
+      font-size: .82rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 14px 0;
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      line-height: 1.12;
+      letter-spacing: -1.5px;
+    }
+
+    h2 { line-height: 1.3; }
+    p { color: var(--suave); }
+
+    .intro {
+      max-width: 700px;
+      font-size: 1.1rem;
+    }
+
+    .seccion { padding: 25px 0; }
+
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .tarjeta {
+      padding: 22px;
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+    }
+
+    .tarjeta h3 { margin-top: 0; }
+    .tarjeta p { margin-bottom: 0; }
+
+    .aviso {
+      padding: 18px 20px;
+      border-left: 3px solid var(--acento);
+      background: var(--panel);
+      border-radius: 5px;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 25px 0 40px;
+      border-top: 1px solid var(--borde);
+    }
+
+    .enlaces {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+
+    small { color: var(--suave); }
+  </style>
 </head>
 <body>
-  <h1>WestcolClipsAI</h1>
-  <p>Proyecto de automatización de clips.</p>
-  <p><a href="./terms.html">Términos y condiciones</a></p>
-  <p><a href="./privacy.html">Política de privacidad</a></p>
+  <header>
+    <a class="marca" href="./">WestcolClipsAI</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="etiqueta">Herramientas para creadores</div>
+      <h1>Prepara tus clips de video en formato vertical.</h1>
+      <p class="intro">
+        WestcolClipsAI es un proyecto de herramientas para ayudar
+        a preparar fragmentos de video para contenido digital.
+        Su objetivo es simplificar parte del proceso de creación
+        y facilitar el envío de contenido mediante las funciones
+        autorizadas de la plataforma TikTok.
+      </p>
+    </section>
+
+    <section class="seccion">
+      <h2>¿Qué es WestcolClipsAI?</h2>
+      <p>
+        El proyecto está orientado a creadores que necesitan
+        seleccionar fragmentos de video y prepararlos para
+        su publicación en formato vertical. El flujo de trabajo
+        puede incluir la preparación de clips y la conexión
+        con una cuenta de TikTok autorizada por el usuario.
+      </p>
+    </section>
+
+    <section class="seccion">
+      <h2>¿Cómo funciona?</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>1. Preparación del video</h3>
+          <p>
+            Los fragmentos seleccionados se preparan para
+            adaptarse al formato de video vertical.
+          </p>
+        </article>
+        <article class="tarjeta">
+          <h3>2. Conexión autorizada</h3>
+          <p>
+            El usuario puede conectar su cuenta mediante
+            los mecanismos de autorización disponibles
+            en la integración con TikTok.
+          </p>
+        </article>
+        <article class="tarjeta">
+          <h3>3. Envío de contenido</h3>
+          <p>
+            Cuando la función está habilitada y autorizada,
+            el contenido se puede enviar mediante las
+            interfaces de publicación admitidas por TikTok.
+            La disponibilidad depende de los permisos
+            y del estado de la integración.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <h2>Privacidad y permisos</h2>
+      <p>
+        La conexión con TikTok requiere la autorización
+        del usuario y está sujeta a los permisos concedidos
+        y a las condiciones de la plataforma. Consulta
+        nuestra política de privacidad para conocer
+        el tratamiento de la información y los datos
+        relacionados con la integración.
+      </p>
+      <p>
+        WestcolClipsAI no debe utilizarse para publicar
+        contenido sin autorización ni para vulnerar
+        los derechos de terceros.
+      </p>
+    </section>
+
+    <section class="seccion">
+      <h2>Uso responsable</h2>
+      <p class="aviso">
+        Los usuarios son responsables de contar con los
+        derechos y permisos necesarios sobre los videos
+        que procesan y comparten. El uso de la aplicación
+        también debe cumplir las normas comunitarias
+        y las condiciones de servicio de TikTok.
+      </p>
+    </section>
+
+    <section class="seccion">
+      <h2>Documentación legal</h2>
+      <p>
+        Consulta las condiciones de uso y la información
+        sobre privacidad del proyecto en los siguientes enlaces.
+      </p>
+      <div class="enlaces">
+        <a href="./terms.html">Términos y condiciones</a>
+        <a href="./privacy.html">Política de privacidad</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      WestcolClipsAI es un proyecto independiente.
+      No implica patrocinio ni respaldo oficial de TikTok.
+    </p>
+    <small>WestcolClipsAI</small>
+  </footer>
 </body>
 </html>

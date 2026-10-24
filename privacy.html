@@ -2,175 +2,318 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10101b">
-<meta name="description" content="Política de privacidad de WestcolClipsAI / WestcolClipsAI Privacy Policy">
-<title>Política de privacidad | WestcolClipsAI</title>
-<style>
-:root{color-scheme:dark;--bg:#10101b;--panel:#191927;--text:#f7f7fc;--muted:#c0bfd0;--accent:#b9adff;--border:#343448}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.8 system-ui,-apple-system,"Segoe UI",sans-serif}
-a{color:var(--accent)}a:hover{color:white}
-.container{width:min(900px,calc(100% - 36px));margin:auto}
-header{border-bottom:1px solid var(--border);padding:20px 0}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.brand{font-size:19px;font-weight:800;color:white;text-decoration:none}
-button{font:inherit;cursor:pointer;background:var(--panel);color:white;border:1px solid var(--border);border-radius:10px;padding:8px 12px}
-main{padding:48px 0 70px}
-.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800}
-h1{font-size:clamp(34px,6vw,52px);line-height:1.15;letter-spacing:-1px;margin:12px 0}
-h2{font-size:23px;line-height:1.35;margin-top:35px}
-p,li{color:var(--muted)}
-.intro,.panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px}
-section{margin-top:30px}
-footer{border-top:1px solid var(--border);padding:24px 0 36px;color:var(--muted)}
-.links{display:flex;flex-wrap:wrap;gap:16px}
-@media(max-width:600px){main{padding-top:32px}h2{font-size:21px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Política de privacidad de WestcolClipsAI. Información sobre datos, permisos de TikTok, sesiones y contacto.">
+  <title>Política de privacidad | WestcolClipsAI</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b12;
+      --panel: #151522;
+      --text: #f4f4f8;
+      --muted: #b9b9ca;
+      --accent: #b69cff;
+      --border: #343347;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    header, main, footer {
+      width: min(900px, 92%);
+      margin: auto;
+    }
+
+    header {
+      padding: 28px 0 12px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    nav a {
+      text-decoration: none;
+    }
+
+    button {
+      margin-left: auto;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    .intro, section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 22px;
+      margin: 18px 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 20px 0 40px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 520px) {
+      .intro, section {
+        padding: 16px;
+      }
+
+      button {
+        margin-left: 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
 <header>
-<div class="container">
-<nav>
-<a class="brand" href="./">◈ WestcolClipsAI</a>
-<div class="links">
-<a href="./">Inicio / Home</a>
-<a href="./terms.html">Términos / Terms</a>
-<button id="language" type="button">ES / EN</button>
-</div>
-</nav>
-</div>
+  <nav aria-label="Navegación principal">
+    <a href="./index.html">WestcolClipsAI</a>
+    <a href="./terms.html"
+       data-es="Términos y condiciones"
+       data-en="Terms and Conditions">Términos y condiciones</a>
+    <button id="language" type="button" aria-label="Change language">ES / EN</button>
+  </nav>
+
+  <p class="muted">WestcolClipsAI</p>
+  <h1 data-es="Política de privacidad"
+      data-en="Privacy Policy">Política de privacidad</h1>
+  <p class="muted"
+     data-es="Última actualización: 24 de octubre de 2026"
+     data-en="Last updated: October 24, 2026">Última actualización: 24 de octubre de 2026</p>
 </header>
 
-<main class="container">
-<div class="eyebrow" data-i18n="eyebrow">Privacidad y protección de datos</div>
-<h1 data-i18n="title">Política de privacidad</h1>
-<p class="intro" data-i18n="intro">Esta política explica cómo WestcolClipsAI puede tratar información cuando utilizas el proyecto o autorizas una integración con servicios externos. Las prácticas descritas deben interpretarse de acuerdo con las funciones realmente habilitadas.</p>
+<main>
+  <div class="intro">
+    <p
+      data-es="Esta política explica cómo WestcolClipsAI trata la información cuando una persona conecta su cuenta de TikTok y utiliza las funciones de la aplicación. La aplicación está diseñada para ayudar a gestionar clips de video y facilitar su envío a TikTok."
+      data-en="This policy explains how WestcolClipsAI handles information when a person connects their TikTok account and uses the application's features. The application is designed to help manage video clips and facilitate sending them to TikTok.">
+      Esta política explica cómo WestcolClipsAI trata la información cuando una persona conecta su cuenta de TikTok y utiliza las funciones de la aplicación. La aplicación está diseñada para ayudar a gestionar clips de video y facilitar su envío a TikTok.
+    </p>
+  </div>
 
-<section>
-<h2 data-i18n="s1">1. Alcance</h2>
-<p data-i18n="p1">Esta política se aplica al sitio web de WestcolClipsAI y a las funciones del proyecto que estén disponibles. Los servicios de terceros pueden tener sus propias políticas de privacidad y condiciones.</p>
-</section>
+  <section>
+    <h2 data-es="1. Responsable y contacto"
+        data-en="1. Controller and contact">1. Responsable y contacto</h2>
+    <p
+      data-es="WestcolClipsAI es un proyecto independiente. Para consultas sobre privacidad, solicitudes relacionadas con datos personales o dudas sobre esta política, puedes escribir a:"
+      data-en="WestcolClipsAI is an independent project. For privacy questions, requests concerning personal data, or questions about this policy, you can contact:">
+      WestcolClipsAI es un proyecto independiente. Para consultas sobre privacidad, solicitudes relacionadas con datos personales o dudas sobre esta política, puedes escribir a:
+    </p>
+    <p><strong>Email:</strong>
+      <a href="mailto:theclipscolombia@gmail.com">theclipscolombia@gmail.com</a>
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s2">2. Información que puede tratarse</h2>
-<p data-i18n="p2">Según las funciones utilizadas, la información puede incluir datos técnicos de conexión, información necesaria para mantener una sesión, datos de autorización de una plataforma externa, identificadores de cuenta proporcionados por esa plataforma y archivos de video que el usuario decida procesar.</p>
-<p data-i18n="p2b">La información concreta tratada depende de la configuración activa y de los permisos concedidos. El responsable del proyecto debe verificar qué datos se recopilan, cuáles se almacenan y durante cuánto tiempo antes de utilizar esta política para una revisión formal.</p>
-</section>
+  <section>
+    <h2 data-es="2. Información que puede tratarse"
+        data-en="2. Information that may be processed">2. Información que puede tratarse</h2>
+    <ul>
+      <li
+        data-es="Datos básicos del perfil de TikTok que estén disponibles mediante los permisos autorizados, como identificadores de cuenta."
+        data-en="Basic TikTok profile data made available through authorized permissions, such as account identifiers.">
+        Datos básicos del perfil de TikTok que estén disponibles mediante los permisos autorizados, como identificadores de cuenta.
+      </li>
+      <li
+        data-es="Tokens de acceso y renovación de TikTok necesarios para mantener la autorización y realizar las acciones solicitadas."
+        data-en="TikTok access and refresh tokens needed to maintain authorization and perform requested actions.">
+        Tokens de acceso y renovación de TikTok necesarios para mantener la autorización y realizar las acciones solicitadas.
+      </li>
+      <li
+        data-es="Datos técnicos de sesión necesarios para que funcione el inicio de sesión y las funciones de la aplicación."
+        data-en="Technical session data needed for login and application features to work.">
+        Datos técnicos de sesión necesarios para que funcione el inicio de sesión y las funciones de la aplicación.
+      </li>
+      <li
+        data-es="Información de los videos que el usuario decida procesar o enviar mediante la aplicación."
+        data-en="Information about videos the user chooses to process or send through the application.">
+        Información de los videos que el usuario decida procesar o enviar mediante la aplicación.
+      </li>
+    </ul>
+    <p
+      data-es="La información efectivamente tratada depende de las funciones utilizadas, de los permisos concedidos y de la configuración del servicio. No introduzcas contraseñas de TikTok directamente en WestcolClipsAI."
+      data-en="The information actually processed depends on the features used, the permissions granted, and the service configuration. Do not enter your TikTok password directly into WestcolClipsAI.">
+      La información efectivamente tratada depende de las funciones utilizadas, de los permisos concedidos y de la configuración del servicio. No introduzcas contraseñas de TikTok directamente en WestcolClipsAI.
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s3">3. Finalidades del tratamiento</h2>
-<ul>
-<li data-i18n="l31">Proporcionar y mantener las funciones solicitadas por el usuario.</li>
-<li data-i18n="l32">Gestionar la autorización y conexión con servicios externos cuando estén habilitadas.</li>
-<li data-i18n="l33">Diagnosticar errores, proteger la seguridad y mantener el funcionamiento del servicio.</li>
-<li data-i18n="l34">Cumplir obligaciones legales aplicables.</li>
-</ul>
-</section>
+  <section>
+    <h2 data-es="3. Permisos de TikTok"
+        data-en="3. TikTok permissions">3. Permisos de TikTok</h2>
+    <p
+      data-es="La integración está configurada para solicitar los permisos user.info.basic y video.upload. El primero permite acceder a información básica autorizada del perfil; el segundo permite utilizar las funciones de publicación de video que TikTok habilite para la aplicación y la cuenta."
+      data-en="The integration is configured to request the user.info.basic and video.upload permissions. The first allows access to authorized basic profile information; the second enables video publishing features that TikTok makes available to the application and account.">
+      La integración está configurada para solicitar los permisos user.info.basic y video.upload. El primero permite acceder a información básica autorizada del perfil; el segundo permite utilizar las funciones de publicación de video que TikTok habilite para la aplicación y la cuenta.
+    </p>
+    <p
+      data-es="La autorización se realiza mediante el flujo de inicio de sesión de TikTok. WestcolClipsAI no necesita conocer la contraseña de TikTok del usuario."
+      data-en="Authorization takes place through TikTok's login flow. WestcolClipsAI does not need to know the user's TikTok password.">
+      La autorización se realiza mediante el flujo de inicio de sesión de TikTok. WestcolClipsAI no necesita conocer la contraseña de TikTok del usuario.
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s4">4. Integración con TikTok</h2>
-<p data-i18n="p4">Si utilizas una función de conexión con TikTok, la información se procesa de acuerdo con los permisos autorizados y las funciones habilitadas. El uso de la plataforma también está sujeto a las políticas y condiciones de TikTok.</p>
-<p data-i18n="p4b">No concedas permisos que no comprendas. Puedes gestionar el acceso desde las opciones de seguridad de tu cuenta de TikTok cuando esa función esté disponible.</p>
-</section>
+  <section>
+    <h2 data-es="4. Uso de la información"
+        data-en="4. How information is used">4. Uso de la información</h2>
+    <p
+      data-es="La información se utiliza para conectar la cuenta autorizada, mantener la sesión, identificar la cuenta conectada y ejecutar las funciones de video que el usuario solicite. No debe utilizarse para finalidades incompatibles con esas funciones o con los permisos concedidos."
+      data-en="Information is used to connect the authorized account, maintain the session, identify the connected account, and perform video features requested by the user. It should not be used for purposes incompatible with these features or the permissions granted.">
+      La información se utiliza para conectar la cuenta autorizada, mantener la sesión, identificar la cuenta conectada y ejecutar las funciones de video que el usuario solicite. No debe utilizarse para finalidades incompatibles con esas funciones o con los permisos concedidos.
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s5">5. Cookies, sesiones y seguridad</h2>
-<p data-i18n="p5">El servicio puede utilizar mecanismos técnicos de sesión necesarios para la autenticación y el funcionamiento de sus funciones. Las medidas de seguridad deben ser adecuadas al tipo de información tratada. Ningún sistema de transmisión o almacenamiento puede garantizar seguridad absoluta.</p>
-</section>
+  <section>
+    <h2 data-es="5. Tokens y sesiones"
+        data-en="5. Tokens and sessions">5. Tokens y sesiones</h2>
+    <p
+      data-es="Los tokens de acceso y renovación son credenciales sensibles. El servidor los utiliza para gestionar la autorización con TikTok y realizar las acciones solicitadas. No compartas esos tokens con otras personas."
+      data-en="Access and refresh tokens are sensitive credentials. The server uses them to manage authorization with TikTok and perform requested actions. Do not share these tokens with others.">
+      Los tokens de acceso y renovación son credenciales sensibles. El servidor los utiliza para gestionar la autorización con TikTok y realizar las acciones solicitadas. No compartas esos tokens con otras personas.
+    </p>
+    <p
+      data-es="La configuración actual de la aplicación utiliza sesiones del lado del servidor y una cookie de sesión configurada con una duración aproximada de dos horas. La duración de la cookie no garantiza por sí sola que todos los datos de la sesión se eliminen de inmediato. La expiración y limpieza de la información de sesión dependen también de la configuración del servidor y del alojamiento."
+      data-en="The application's current configuration uses server-side sessions and a session cookie configured to last approximately two hours. The cookie's lifetime alone does not guarantee that all session data is immediately deleted. Session data expiration and cleanup also depend on server and hosting configuration.">
+      La configuración actual de la aplicación utiliza sesiones del lado del servidor y una cookie de sesión configurada con una duración aproximada de dos horas. La duración de la cookie no garantiza por sí sola que todos los datos de la sesión se eliminen de inmediato. La expiración y limpieza de la información de sesión dependen también de la configuración del servidor y del alojamiento.
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s6">6. Compartición de información</h2>
-<p data-i18n="p6">La información puede ser procesada por proveedores de infraestructura necesarios para operar el servicio y por plataformas externas cuando el usuario solicita una función integrada. El responsable debe identificar los proveedores y destinatarios reales y actualizar esta sección si existen otros receptores.</p>
-<p data-i18n="p6b">No se debe interpretar esta política como una garantía de que nunca se comparte información; el tratamiento efectivo depende de la arquitectura y configuración del servicio.</p>
-</section>
+  <section>
+    <h2 data-es="6. Conservación y eliminación"
+        data-en="6. Retention and deletion">6. Conservación y eliminación</h2>
+    <p
+      data-es="La información debe conservarse únicamente durante el tiempo necesario para las funciones descritas, las obligaciones aplicables y la resolución de incidencias. Los datos de sesión pueden dejar de estar disponibles al finalizar la sesión o al reiniciarse el servicio, según la configuración técnica. No se establece aquí un plazo universal de eliminación para todos los datos."
+      data-en="Information should be retained only as long as necessary for the described features, applicable obligations, and troubleshooting. Session data may become unavailable when the session ends or the service restarts, depending on the technical configuration. This policy does not establish a universal deletion period for all data.">
+      La información debe conservarse únicamente durante el tiempo necesario para las funciones descritas, las obligaciones aplicables y la resolución de incidencias. Los datos de sesión pueden dejar de estar disponibles al finalizar la sesión o al reiniciarse el servicio, según la configuración técnica. No se establece aquí un plazo universal de eliminación para todos los datos.
+    </p>
+    <p
+      data-es="Para consultar, corregir o solicitar la eliminación de información relacionada con tu uso de WestcolClipsAI, escribe al correo de contacto. También puedes revocar los permisos de la aplicación desde las opciones de seguridad de tu cuenta de TikTok. La revocación puede impedir que algunas funciones sigan operando."
+      data-en="To ask about, correct, or request deletion of information related to your use of WestcolClipsAI, contact us by email. You can also revoke the application's permissions through your TikTok account's security settings. Revocation may prevent some features from continuing to work.">
+      Para consultar, corregir o solicitar la eliminación de información relacionada con tu uso de WestcolClipsAI, escribe al correo de contacto. También puedes revocar los permisos de la aplicación desde las opciones de seguridad de tu cuenta de TikTok. La revocación puede impedir que algunas funciones sigan operando.
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s7">7. Conservación y eliminación</h2>
-<p data-i18n="p7">La información solo debe conservarse durante el tiempo necesario para las finalidades aplicables o para cumplir obligaciones legales. Los plazos concretos de conservación, los procedimientos de eliminación de datos y la gestión de tokens de autorización deben verificarse y documentarse por el responsable del proyecto.</p>
-</section>
+  <section>
+    <h2 data-es="7. Proveedores y terceros"
+        data-en="7. Providers and third parties">7. Proveedores y terceros</h2>
+    <p
+      data-es="La aplicación se integra con TikTok y utiliza servicios de alojamiento para servir la web y ejecutar el servidor. Esos proveedores pueden tratar datos técnicos necesarios para prestar sus servicios conforme a sus propias políticas. TikTok trata la información de acuerdo con sus propias condiciones y política de privacidad."
+      data-en="The application integrates with TikTok and uses hosting services to serve the website and run the server. Those providers may process technical data necessary to provide their services under their own policies. TikTok handles information according to its own terms and privacy policy.">
+      La aplicación se integra con TikTok y utiliza servicios de alojamiento para servir la web y ejecutar el servidor. Esos proveedores pueden tratar datos técnicos necesarios para prestar sus servicios conforme a sus propias políticas. TikTok trata la información de acuerdo con sus propias condiciones y política de privacidad.
+    </p>
+    <p>
+      <a href="https://www.tiktok.com/legal/page/eea/privacy-policy/en"
+         target="_blank" rel="noopener noreferrer">TikTok — Privacy Policy</a>
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s8">8. Derechos de los usuarios</h2>
-<p data-i18n="p8">Según la legislación aplicable, puedes tener derecho a solicitar acceso, corrección, actualización o eliminación de datos personales, así como a presentar consultas o reclamaciones. La forma de ejercer esos derechos requiere un canal de contacto válido del responsable del proyecto.</p>
-</section>
+  <section>
+    <h2 data-es="8. Seguridad"
+        data-en="8. Security">8. Seguridad</h2>
+    <p
+      data-es="Se deben aplicar medidas razonables para limitar el acceso a credenciales y datos de sesión, proteger los secretos de configuración y evitar exponer tokens en páginas públicas o registros. Ningún sistema conectado a Internet puede garantizar seguridad absoluta. Si detectas una posible exposición de datos, contacta al correo indicado."
+      data-en="Reasonable measures should be applied to restrict access to credentials and session data, protect configuration secrets, and avoid exposing tokens in public pages or logs. No Internet-connected system can guarantee absolute security. If you identify a possible data exposure, contact the email listed here.">
+      Se deben aplicar medidas razonables para limitar el acceso a credenciales y datos de sesión, proteger los secretos de configuración y evitar exponer tokens en páginas públicas o registros. Ningún sistema conectado a Internet puede garantizar seguridad absoluta. Si detectas una posible exposición de datos, contacta al correo indicado.
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s9">9. Privacidad de menores</h2>
-<p data-i18n="p9">El servicio no está diseñado para recopilar deliberadamente datos personales de menores que no puedan utilizarlo legalmente. Si consideras que se han tratado datos de forma indebida, contacta al responsable mediante un canal oficial válido.</p>
-</section>
+  <section>
+    <h2 data-es="9. Privacidad de menores"
+        data-en="9. Children's privacy">9. Privacidad de menores</h2>
+    <p
+      data-es="WestcolClipsAI no está diseñado para recopilar deliberadamente información personal de menores. Si crees que un menor ha proporcionado información personal mediante la aplicación, comunícate con nosotros para evaluar la solicitud."
+      data-en="WestcolClipsAI is not designed to knowingly collect personal information from children. If you believe a child has provided personal information through the application, contact us so the request can be assessed.">
+      WestcolClipsAI no está diseñado para recopilar deliberadamente información personal de menores. Si crees que un menor ha proporcionado información personal mediante la aplicación, comunícate con nosotros para evaluar la solicitud.
+    </p>
+  </section>
 
-<section>
-<h2 data-i18n="s10">10. Cambios en esta política</h2>
-<p data-i18n="p10">Esta política puede actualizarse cuando cambien las funciones, la infraestructura o los requisitos legales. La versión vigente se publicará en esta página junto con la fecha de actualización.</p>
-</section>
+  <section>
+    <h2 data-es="10. Cambios a esta política"
+        data-en="10. Changes to this policy">10. Cambios a esta política</h2>
+    <p
+      data-es="Esta política puede actualizarse cuando cambien las funciones, los permisos o las prácticas de tratamiento de información. La versión vigente se publicará en esta página con su fecha de actualización."
+      data-en="This policy may be updated when features, permissions, or information-handling practices change. The current version will be published on this page with its update date.">
+      Esta política puede actualizarse cuando cambien las funciones, los permisos o las prácticas de tratamiento de información. La versión vigente se publicará en esta página con su fecha de actualización.
+    </p>
+  </section>
 
-<section class="panel">
-<h2 data-i18n="s11">11. Contacto y consultas de privacidad</h2>
-<p data-i18n="p11">Para ejercer tus derechos o realizar consultas sobre privacidad, debe utilizarse el canal de contacto oficial publicado por el responsable del proyecto. Antes de enviar la aplicación a producción, este canal y la identidad del responsable deben estar definidos y ser accesibles.</p>
-<p><strong data-i18n="updatedLabel">Última actualización:</strong> <time datetime="2026-10-24">24 de octubre de 2026</time></p>
-</section>
+  <section>
+    <h2 data-es="11. Contacto"
+        data-en="11. Contact">11. Contacto</h2>
+    <p
+      data-es="Para consultas sobre esta política o sobre el tratamiento de información, escribe a:"
+      data-en="For questions about this policy or information handling, email:">
+      Para consultas sobre esta política o sobre el tratamiento de información, escribe a:
+    </p>
+    <p><a href="mailto:theclipscolombia@gmail.com">theclipscolombia@gmail.com</a></p>
+  </section>
 </main>
 
 <footer>
-<div class="container">
-<div class="links">
-<a href="./">WestcolClipsAI</a>
-<a href="./terms.html" data-i18n="termsLink">Términos y condiciones</a>
-</div>
-<p>© <span id="year"></span> WestcolClipsAI</p>
-</div>
+  <p>© 2026 WestcolClipsAI</p>
+  <p>
+    <a href="./index.html"
+       data-es="Volver al inicio"
+       data-en="Back to home">Volver al inicio</a>
+  </p>
 </footer>
 
 <script>
-const translations={
-es:{
-eyebrow:"Privacidad y protección de datos",title:"Política de privacidad",
-intro:"Esta política explica cómo WestcolClipsAI puede tratar información cuando utilizas el proyecto o autorizas una integración con servicios externos. Las prácticas descritas deben interpretarse de acuerdo con las funciones realmente habilitadas.",
-s1:"1. Alcance",p1:"Esta política se aplica al sitio web de WestcolClipsAI y a las funciones del proyecto que estén disponibles. Los servicios de terceros pueden tener sus propias políticas de privacidad y condiciones.",
-s2:"2. Información que puede tratarse",p2:"Según las funciones utilizadas, la información puede incluir datos técnicos de conexión, información necesaria para mantener una sesión, datos de autorización de una plataforma externa, identificadores de cuenta proporcionados por esa plataforma y archivos de video que el usuario decida procesar.",
-p2b:"La información concreta tratada depende de la configuración activa y de los permisos concedidos. El responsable del proyecto debe verificar qué datos se recopilan, cuáles se almacenan y durante cuánto tiempo antes de utilizar esta política para una revisión formal.",
-s3:"3. Finalidades del tratamiento",l31:"Proporcionar y mantener las funciones solicitadas por el usuario.",l32:"Gestionar la autorización y conexión con servicios externos cuando estén habilitadas.",l33:"Diagnosticar errores, proteger la seguridad y mantener el funcionamiento del servicio.",l34:"Cumplir obligaciones legales aplicables.",
-s4:"4. Integración con TikTok",p4:"Si utilizas una función de conexión con TikTok, la información se procesa de acuerdo con los permisos autorizados y las funciones habilitadas. El uso de la plataforma también está sujeto a las políticas y condiciones de TikTok.",p4b:"No concedas permisos que no comprendas. Puedes gestionar el acceso desde las opciones de seguridad de tu cuenta de TikTok cuando esa función esté disponible.",
-s5:"5. Cookies, sesiones y seguridad",p5:"El servicio puede utilizar mecanismos técnicos de sesión necesarios para la autenticación y el funcionamiento de sus funciones. Las medidas de seguridad deben ser adecuadas al tipo de información tratada. Ningún sistema de transmisión o almacenamiento puede garantizar seguridad absoluta.",
-s6:"6. Compartición de información",p6:"La información puede ser procesada por proveedores de infraestructura necesarios para operar el servicio y por plataformas externas cuando el usuario solicita una función integrada. El responsable debe identificar los proveedores y destinatarios reales y actualizar esta sección si existen otros receptores.",p6b:"No se debe interpretar esta política como una garantía de que nunca se comparte información; el tratamiento efectivo depende de la arquitectura y configuración del servicio.",
-s7:"7. Conservación y eliminación",p7:"La información solo debe conservarse durante el tiempo necesario para las finalidades aplicables o para cumplir obligaciones legales. Los plazos concretos de conservación, los procedimientos de eliminación de datos y la gestión de tokens de autorización deben verificarse y documentarse por el responsable del proyecto.",
-s8:"8. Derechos de los usuarios",p8:"Según la legislación aplicable, puedes tener derecho a solicitar acceso, corrección, actualización o eliminación de datos personales, así como a presentar consultas o reclamaciones. La forma de ejercer esos derechos requiere un canal de contacto válido del responsable del proyecto.",
-s9:"9. Privacidad de menores",p9:"El servicio no está diseñado para recopilar deliberadamente datos personales de menores que no puedan utilizarlo legalmente. Si consideras que se han tratado datos de forma indebida, contacta al responsable mediante un canal oficial válido.",
-s10:"10. Cambios en esta política",p10:"Esta política puede actualizarse cuando cambien las funciones, la infraestructura o los requisitos legales. La versión vigente se publicará en esta página junto con la fecha de actualización.",
-s11:"11. Contacto y consultas de privacidad",p11:"Para ejercer tus derechos o realizar consultas sobre privacidad, debe utilizarse el canal de contacto oficial publicado por el responsable del proyecto. Antes de enviar la aplicación a producción, este canal y la identidad del responsable deben estar definidos y ser accesibles.",
-updatedLabel:"Última actualización:",termsLink:"Términos y condiciones"
-},
-en:{
-eyebrow:"Privacy and data protection",title:"Privacy Policy",
-intro:"This policy explains how WestcolClipsAI may process information when you use the project or authorize an integration with external services. The practices described must reflect the features actually enabled.",
-s1:"1. Scope",p1:"This policy applies to the WestcolClipsAI website and available project features. Third-party services may have their own privacy policies and terms.",
-s2:"2. Information that may be processed",p2:"Depending on the features used, information may include technical connection data, information needed to maintain a session, authorization data from an external platform, account identifiers supplied by that platform, and video files the user chooses to process.",
-p2b:"The specific information processed depends on the active configuration and permissions granted. Before using this policy for a formal review, the project operator must verify which data is collected, stored, and for how long.",
-s3:"3. Purposes of processing",l31:"Provide and maintain features requested by the user.",l32:"Manage authorization and connections to external services where enabled.",l33:"Diagnose errors, protect security, and maintain service operations.",l34:"Comply with applicable legal obligations.",
-s4:"4. TikTok integration",p4:"If you use a TikTok connection feature, information is processed according to the permissions authorized and features enabled. Your use of the platform is also subject to TikTok's policies and terms.",p4b:"Do not grant permissions you do not understand. Where available, you can manage access through your TikTok account security settings.",
-s5:"5. Cookies, sessions, and security",p5:"The service may use technical session mechanisms needed for authentication and its features. Security measures should be appropriate to the information processed. No transmission or storage system can guarantee absolute security.",
-s6:"6. Information sharing",p6:"Information may be processed by infrastructure providers needed to operate the service and by external platforms when a user requests an integrated feature. The project operator must identify actual providers and recipients and update this section if other recipients exist.",p6b:"This policy should not be interpreted as a guarantee that information is never shared; actual processing depends on the service architecture and configuration.",
-s7:"7. Retention and deletion",p7:"Information should be retained only as long as necessary for applicable purposes or legal obligations. Specific retention periods, data deletion procedures, and authorization-token handling must be verified and documented by the project operator.",
-s8:"8. User rights",p8:"Depending on applicable law, you may have the right to request access, correction, updating, or deletion of personal data and to submit inquiries or complaints. Exercising these rights requires a valid contact channel for the project operator.",
-s9:"9. Children's privacy",p9:"The service is not designed to knowingly collect personal information from children who cannot legally use it. If you believe information has been handled improperly, contact the operator through a valid official channel.",
-s10:"10. Changes to this policy",p10:"This policy may be updated when features, infrastructure, or legal requirements change. The current version and its update date will be published on this page.",
-s11:"11. Privacy contact and inquiries",p11:"To exercise your rights or ask privacy-related questions, use the official contact channel published by the project operator. Before submitting the application for production, this channel and the operator's identity must be established and accessible.",
-updatedLabel:"Last updated:",termsLink:"Terms and Conditions"
-}
-};
-let lang="es";
-document.getElementById("language").addEventListener("click",()=>{
-lang=lang==="es"?"en":"es";
-document.documentElement.lang=lang;
-document.querySelectorAll("[data-i18n]").forEach(el=>{
-const key=el.dataset.i18n;
-if(translations[lang][key])el.textContent=translations[lang][key];
-});
-document.getElementById("language").textContent=lang==="es"?"ES / EN":"EN / ES";
-});
-document.getElementById("year").textContent=new Date().getFullYear();
+  const button = document.getElementById("language");
+  let currentLanguage = "es";
+
+  function setLanguage(language) {
+    currentLanguage = language;
+    document.documentElement.lang = language;
+
+    document.querySelectorAll("[data-es][data-en]").forEach(element => {
+      element.textContent = element.dataset[language];
+    });
+
+    button.textContent = language === "es" ? "ES / EN" : "EN / ES";
+  }
+
+  button.addEventListener("click", () => {
+    setLanguage(currentLanguage === "es" ? "en" : "es");
+  });
 </script>
 </body>
 </html>
